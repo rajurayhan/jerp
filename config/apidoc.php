@@ -7,12 +7,12 @@ return [
      * - "laravel" will generate the documentation as a Blade view,
      * so you can add routing and authentication.
      */
-    'type' => 'static',
+    'type' => 'laravel',
 
     /*
      * Static output folder: HTML documentation and assets will be generated in this folder.
      */
-   'output_folder' => 'public/docs',
+    'output_folder' => 'public/docs',
 
     /*
      * Settings for `laravel` type output.
@@ -22,7 +22,7 @@ return [
          * Whether to automatically create a docs endpoint for you to view your generated docs.
          * If this is false, you can still set up routing manually.
          */
-        'autoload' => false,
+        'autoload' => true,
 
         /*
          * URL path to use for the docs endpoint (if `autoload` is true).
@@ -53,7 +53,9 @@ return [
      * The base URL to be used in examples and the Postman collection.
      * By default, this will be the value of config('app.url').
      */
-    'base_url' => null,
+    'base_url' => '{{$baseUrl}}',
+
+    // dss.aws.simecsystem.com:10012
 
     /*
      * Generate a Postman collection in addition to HTML docs.
@@ -109,7 +111,7 @@ return [
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters).
                  */
                 'prefixes' => [
-                    '*',
+                    'api/*',
                     // 'users/*',
                 ],
 
@@ -150,7 +152,8 @@ return [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                    // 'Authorization' => 'Bearer {token}',
+                    'Authorization' => 'Bearer {{$token}}',
+                    'X-Localization' => 'en',
                     // 'Api-Version' => 'v2',
                 ],
 
@@ -238,12 +241,12 @@ return [
      * If you want to use this, please be aware of the following rules:
      * - the image size must be 230 x 52
      */
-    'logo' => false,
+    'logo' => null,
 
     /*
      * Name for the group of routes which do not have a @group set.
      */
-    'default_group' => 'general',
+    'default_group' => 'Unmanage  Grouped',
 
     /*
      * Example requests for each endpoint will be shown in each of these languages.
@@ -254,7 +257,7 @@ return [
      *
      */
     'example_languages' => [
-        'bash',
+        'php',
         'javascript',
     ],
 
